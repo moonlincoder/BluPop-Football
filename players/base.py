@@ -17,7 +17,7 @@ class Player(pygame.sprite.Sprite):
 
         self.rect = self.image.get_rect()
         self.rect.center = [100, 100]
-re
+
         self.action = 0
         # 0: idle
         # 1: run
