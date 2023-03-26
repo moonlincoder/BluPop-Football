@@ -1,1 +1,1 @@
-from .boy import Boy
+from .Bean import Bean

@@ -16,3 +16,9 @@ class GameWindow(Window):
 
     def __str__(self):
         return self.__class__.__name__ + str(self.wind_created)
+
+    def choosing_pers(self):
+        pass
+
+    def game(self):
+        pass
