@@ -4,6 +4,7 @@
     Например отрисовка
 '''
 
+
 class Window:
     def show(self):
         print(f"drawing {str(self)}")
