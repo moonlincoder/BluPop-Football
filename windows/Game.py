@@ -8,6 +8,5 @@ from .base import Window
 
 
 class GameWindow(Window):
-    def __init__(self, screen):
-        super().__init__(screen)
+    def __init__(self):
         print("new game")
