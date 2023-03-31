@@ -11,6 +11,7 @@ CONTROL_2 = ('w', 'a', 's', 'd', pygame.K_TAB)
 CONTROL_3 = ('u', 'h', 'j', 'k', pygame.K_SPACE)
 CONTROL_4 = ('8', '4', '2', '6', '0')
 
+
 class Player(pygame.sprite.Sprite):
     sprite = ''
 
@@ -46,12 +47,4 @@ class Player(pygame.sprite.Sprite):
         self.move_value = 0
         self.rotate_value = 0
 
-        if keyboard.is_pressed(self.__controls[3]):
-            self.rotate_value = ROTATION_DEGREE
-        if keyboard.is_pressed(self.__controls[2]):
-            self.rotate_value = -ROTATION_DEGREE
-        if keyboard.is_pressed(self.__controls[0]):
-            self.move_value = MOVEMENT_DEGREE
-        if keyboard.is_pressed(self.__controls[1]):
-            self.move_value = -MOVEMENT_DEGREE
 

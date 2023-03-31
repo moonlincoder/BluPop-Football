@@ -6,7 +6,8 @@ class Game:
     game: 'Game' = None
 
     def __init__(self):
-        Game.game = self
+        if Game.game is None:
+            Game.game = self
 
         pygame.init()
         pygame.font.init()
@@ -25,18 +26,16 @@ class Game:
         Game.game.current_view = view
 
     def run(self):
-        from windows import Temp
-        self.current_view = Temp.TemplateWindow()
+        from windows import PreGame
+        self.current_view = PreGame.PreGameWindow()
         running = True
         while running:
             events = pygame.event.get()
             for event in events:
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        running = False
-                elif event.type == pygame.QUIT:
+                if event.type == pygame.QUIT:
                     running = False
 
+            # Обновление текущего окна
             self.current_view.event_loop(events)
             self.current_view.update()
             self.current_view.draw(self.screen)
