@@ -13,7 +13,7 @@ class Game:
         pygame.font.init()
 
         WIDTH = 1280
-        HEIGHT = 960
+        HEIGHT = 800
         GAME_TITLE = "Футбол головой на двоих"
 
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -26,8 +26,8 @@ class Game:
         Game.game.current_view = view
 
     def run(self):
-        from windows import PreGame
-        self.current_view = PreGame.PreGameWindow()
+        from windows.Menu import MenuWindow
+        self.current_view = MenuWindow()
         running = True
         while running:
             events = pygame.event.get()
