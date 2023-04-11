@@ -32,5 +32,3 @@ class PreGameWindow(Window):
         text_rect = self.info_text1.get_rect()
         text_rect.center = surface.get_rect().center
         surface.blit(self.info_text1, text_rect.topleft)
-
-

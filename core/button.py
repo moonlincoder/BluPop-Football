@@ -5,11 +5,9 @@ def NoFunc():
 
 class Button():
 
-    # еще один эл-т - отступ вниз от предыдущей кнопки (indent)
     def __init__(self, indent, width, height, buttonText='Button', onclickFunction=NoFunc, onePress=NoFunc):
-        #
         self.indent = indent
-        #
+
         self.width = width
         self.height = height
         self.onclickFunction = onclickFunction
@@ -33,10 +31,8 @@ class Button():
     def process(self, screen):
 
         # ширина и высота экрана
-        self.x = pygame.display.get_surface().get_width() / 2
-        #
-        self.y = pygame.display.get_surface().get_height() / 2 + self.indent
-        #
+        self.x = pygame.display.get_surface().get_width() / 2 - self.width / 2
+        self.y = pygame.display.get_surface().get_height() / 2 + self.indent - self.height / 2
 
 
         self.buttonRect = pygame.Rect(self.x, self.y, self.width, self.height)

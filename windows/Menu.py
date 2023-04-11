@@ -12,15 +12,17 @@ from game import Game
 '''
 
 def call():
-    from windows import Temp
-    Game.game.set_current_view(Temp.TemplateWindow(1))
+    from windows import PreGame
+    Game.game.set_current_view(PreGame.PreGameWindow())
 
 def call_settings():
-    # вызов окна с настройками
+    from windows import Settings
+    Game.game.set_current_view(Settings.SettingsWindow())
     pass
 
 def call_sound():
-    # окно со звуком
+    from windows import Sound
+    Game.game.set_current_view(Sound.SoundWindow())
     pass
 
 
