@@ -14,11 +14,25 @@ from game import Game
 def call():
     from windows import Temp
     Game.game.set_current_view(Temp.TemplateWindow(1))
+
+def call_settings():
+    # вызов окна с настройками
+    pass
+
+def call_sound():
+    # окно со звуком
+    pass
+
+
 class MenuWindow(Window):
     def __init__(self):
-        x = pygame.display.get_width()
-        y = pygame.display.get_height()
-        self.but = button.Button(x, y, 200, 50, "lololo", call)
+        self.btn_game = button.Button(0, 200, 50, "Игра", call)
+
+        # отступ
+        self.btn_settings = button.Button(70, 200, 50, "Настройки", call_settings)
+        # еше одна кнопочка с отступом, скорее всего стоит реализовать по-другому
+        self.btn_sound = button.Button(140, 200, 50, "Звук", call_sound)
+
     def event_loop(self, events):
         pass
 
@@ -26,4 +40,7 @@ class MenuWindow(Window):
 
     def draw(self, surface):
         surface.fill((255, 0, 0))
-        self.but.process(surface)
+
+        self.btn_game.process(surface)
+        self.btn_settings.process(surface)
+        self.btn_sound.process(surface)
