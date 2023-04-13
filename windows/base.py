@@ -5,6 +5,7 @@
     ____
     ed. Общие функции удалены, теперь это абстрактный класс
 """
+from core import component
 
 
 class Window:
@@ -12,5 +13,7 @@ class Window:
         return self.__class__.__name__
 
     def event_loop(self, events): ...  # События и любые действия с клавишами
+
     def update(self): ...  # Обновление рассчетов
+
     def draw(self, surface): ...  # Отрисовка итоговой картинки

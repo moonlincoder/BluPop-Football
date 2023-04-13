@@ -17,6 +17,7 @@ class Game:
         GAME_TITLE = "Футбол головой на двоих"
 
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
+        # pygame.display.set_icon(S)
         pygame.display.set_caption(GAME_TITLE)
         self.clock = pygame.time.Clock()
         self.current_view: Window = Window()

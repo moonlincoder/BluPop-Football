@@ -17,13 +17,14 @@ class Player(pygame.sprite.Sprite):
 
     def __init__(self, x_pos, y_pos, controls):
 
-        self.__xPos = x_pos
-        self.__yPos = y_pos
+        self.x_pos = x_pos
+        self.y_pos = y_pos
 
         self.score = 0
 
-        self.__controls = controls
+        self.controls = controls
         pygame.sprite.Sprite.__init__(self)
+
         self.image = pygame.Surface((50, 50))
         self.image.fill((0, 200, 0))
 
