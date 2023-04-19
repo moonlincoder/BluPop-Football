@@ -4,6 +4,9 @@ from windows.base import Window
 from windows import Temp, Football
 from game import Game
 
+from players.base import CONTROL_2
+from players import Bean
+
 
 class PreGameWindow(Window):
     def __init__(self):
@@ -20,8 +23,9 @@ class PreGameWindow(Window):
                     i = 2
                 if event.key == pygame.K_4:
                     i = 4
-                # Game.game.set_current_view(Temp.TemplateWindow(i))
-                Game.game.set_current_view(Football.GameWindow([1]))
+
+                Game.game.set_current_view(Football.GameWindow([Bean(100, 100, CONTROL_2)]))
+
     def update(self):
         pass
 

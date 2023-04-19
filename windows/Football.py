@@ -1,5 +1,6 @@
 import pygame
 
+from players.base import Player
 from game import Game
 from .base import Window
 
@@ -34,20 +35,30 @@ class Ball(pygame.sprite.Sprite):
 
         if pygame.mouse.get_pressed()[0]:
             self.rect.center = pygame.mouse.get_pos()
+            self.vector[0] = 0
 
     def draw(self, surface):
         surface.blit(self.image, self.rect)
 
 
 class GameWindow(Window):
-    def __init__(self, players):
+    def __init__(self, players: list[Player]):
         self.players = players
         self.ball = Ball()
         print("new game")
 
+    def event_loop(self, events):
+        for player in self.players:
+            player.monitor_keys(events)
+
     def update(self):
         self.ball.update()
+        for player in self.players:
+            player.update()
 
     def draw(self, surface):
         surface.fill((255, 255, 255))
         self.ball.draw(surface)
+
+        for player in self.players:
+            surface.blit(player.image, player.rect)

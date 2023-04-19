@@ -30,7 +30,7 @@ class Game:
         Game.game.current_view = view
 
     def run(self):
-        MAXWIDTH, MAXHEIGHT = 1920, 1080
+        MAXWIDTH, MAXHEIGHT = 1920, 1080  # нужно исходить из размера монитора
         MINWIDTH, MINHEIGHT = 1200, 800
 
         from windows.Menu import MenuWindow
@@ -42,13 +42,13 @@ class Game:
                 if event.type == pygame.QUIT:
                     running = False
 
-                    elif event.type == VIDEORESIZE:
+                elif event.type == pygame.VIDEORESIZE:
 
                     width = min(MAXWIDTH, max(MINWIDTH, event.w))
                     height = min(MAXHEIGHT, max(MINHEIGHT, event.h))
 
                     if (width, height) != event.size:
-                        screen = pygame.display.set_mode((width, height), pygame.RESIZABLE)
+                        self.screen = pygame.display.set_mode((width, height), pygame.RESIZABLE)
 
             # Обновление текущего окна
             self.current_view.event_loop(events)
