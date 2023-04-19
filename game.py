@@ -16,17 +16,23 @@ class Game:
         HEIGHT = 800
         GAME_TITLE = "Футбол головой на двоих"
 
-        self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
+        # добавление возможности изменить размер окна
+        self.screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
         # pygame.display.set_icon(S)
         pygame.display.set_caption(GAME_TITLE)
         self.clock = pygame.time.Clock()
         self.current_view: Window = Window()
+
+
 
     @staticmethod
     def set_current_view(view):
         Game.game.current_view = view
 
     def run(self):
+        MAXWIDTH, MAXHEIGHT = 1920, 1080
+        MINWIDTH, MINHEIGHT = 1200, 800
+
         from windows.Menu import MenuWindow
         self.current_view = MenuWindow()
         running = True
@@ -35,6 +41,14 @@ class Game:
             for event in events:
                 if event.type == pygame.QUIT:
                     running = False
+
+                    elif event.type == VIDEORESIZE:
+
+                    width = min(MAXWIDTH, max(MINWIDTH, event.w))
+                    height = min(MAXHEIGHT, max(MINHEIGHT, event.h))
+
+                    if (width, height) != event.size:
+                        screen = pygame.display.set_mode((width, height), pygame.RESIZABLE)
 
             # Обновление текущего окна
             self.current_view.event_loop(events)
@@ -45,5 +59,7 @@ class Game:
             pygame.display.flip()
             self.clock.tick(30)
             # ---------------------------
+
+            #pygame.display.update()
 
         pygame.quit()

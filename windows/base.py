@@ -5,7 +5,7 @@
     ____
     ed. Общие функции удалены, теперь это абстрактный класс
 """
-from core import component
+#from core import component
 
 
 class Window:

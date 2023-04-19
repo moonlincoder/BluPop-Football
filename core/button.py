@@ -1,9 +1,9 @@
 import pygame
 
-from core.component import Component
+#from core.component import Component
 
 
-class Button(Component):
+class Button:
     def __init__(self, indent, width, height, buttonText='Button', onclickFunction=None):
         self.indent = indent
 
