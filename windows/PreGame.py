@@ -4,7 +4,7 @@ from windows.base import Window
 from windows import Temp, Football
 from game import Game
 
-from players.base import CONTROL_2
+from players.base import CONTROL_1, CONTROL_2, CONTROL_3, CONTROL_4
 from players import Bean
 
 
@@ -17,15 +17,19 @@ class PreGameWindow(Window):
     def event_loop(self, events):
         for event in events:
             if event.type == pygame.KEYDOWN:
-                i = 1
+                selected = []
                 if event.key == pygame.K_1:
-                    i = 1
+                    selected.append(Bean(100, 100, CONTROL_2))
                 if event.key == pygame.K_2:
-                    i = 2
+                    selected.append(Bean(400, 100, CONTROL_1))
+                    selected.append(Bean(100, 100, CONTROL_2))
                 if event.key == pygame.K_4:
-                    i = 4
+                    selected.append(Bean(100, 100, CONTROL_1))
+                    selected.append(Bean(300, 100, CONTROL_2))
+                    selected.append(Bean(500, 100, CONTROL_3))
+                    selected.append(Bean(700, 100, CONTROL_4))
 
-                Game.game.set_current_view(Football.GameWindow([Bean(100, 100, CONTROL_2)]))
+                Game.game.set_current_view(Football.GameWindow(selected))
 
     def update(self):
         pass
