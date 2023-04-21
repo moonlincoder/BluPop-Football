@@ -43,6 +43,7 @@ class Ball(pygame.sprite.Sprite):
 
 class GameWindow(Window):
     def __init__(self, players: list[Player]):
+        super().__init__()
         self.players = players
         self.ball = Ball()
         print("new game")

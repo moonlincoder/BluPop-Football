@@ -17,6 +17,7 @@ def call_menu():
 
 class SettingsWindow(Window):
     def __init__(self):
+        super().__init__()
         self.btn_back = button.Button(300, 200, 50, "Назад", call_menu)
 
     def event_loop(self, events): ...  # События и любые действия с клавишами

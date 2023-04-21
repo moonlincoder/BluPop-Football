@@ -8,6 +8,7 @@ from game import Game
 
 class TemplateWindow(Window):
     def __init__(self, i):
+        super().__init__()
         self.bases = [
             [random.randint(1, pygame.display.get_window_size()[0]),
              random.randint(1, pygame.display.get_window_size()[1])] for x in range(i)

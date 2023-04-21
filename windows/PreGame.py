@@ -10,6 +10,7 @@ from players import Bean
 
 class PreGameWindow(Window):
     def __init__(self):
+        super().__init__()
         info_font = pygame.font.SysFont("Arial", 25)
         self.info_text1 = info_font.render("Выберите количество игроков нажав на клавиатуре [1, 2, 4]", True, (0, 10, 0))
 

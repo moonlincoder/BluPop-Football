@@ -1,6 +1,6 @@
 import pygame
 
-from core import button
+from core import button, label, button2
 from .base import Window
 from game import Game
 
@@ -28,6 +28,12 @@ def call_sound():
 
 class MenuWindow(Window):
     def __init__(self):
+        super().__init__()
+
+        self.add_child(label.Label((50, 50), "Футбик головой", font_size=42))
+        self.add_child(label.Label((50, 170), "в новой кнопке нажатие срабатывает при отпускании", font_size=25, color=(150,250,100)))
+        self.add_child(button2.Button((430, 100), "Получить 3 точки", font_size=50, action=call))
+
         self.btn_game = button.Button(0, 200, 50, "Игра", call)
 
         # отступ
@@ -35,7 +41,7 @@ class MenuWindow(Window):
         # еше одна кнопочка с отступом, скорее всего стоит реализовать по-другому
         self.btn_sound = button.Button(140, 200, 50, "Звук", call_sound)
 
-    def event_loop(self, events):
+    def event_loop(self, event):
         pass
 
     def update(self): ...  # Обновление рассчетов

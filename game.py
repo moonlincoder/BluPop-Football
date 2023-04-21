@@ -55,6 +55,10 @@ class Game:
             self.current_view.update()
             self.current_view.draw(self.screen)
 
+            self.current_view.event_sys(events)
+            self.current_view.update_sys()
+            self.current_view.draw_sys(self.screen)
+
             # Эти две строки должны быть в самом конце цикла
             pygame.display.flip()
             self.clock.tick(30)
