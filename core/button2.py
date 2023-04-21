@@ -2,6 +2,7 @@ from core.component import Component
 from core.label import Label
 import pygame
 
+# todo: Добавить размеры кнопки
 
 class Button(Component):
     def __init__(self, position=(0, 0), text: str = "Button", action=None, font="Arial", font_size=14):
@@ -19,6 +20,8 @@ class Button(Component):
             'hover': '#666666',
             'pressed': '#333333',
         }
+
+        # todo:
 
         self.buttonRect = pygame.Rect(self.position[0], self.position[1], *self.font.size(text))
         self.buttonSurface = pygame.Surface(self.font.size(text))

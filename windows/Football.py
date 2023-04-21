@@ -11,6 +11,8 @@ from .base import Window
 '''
 
 
+# todo: Изменить скорость боба
+
 class Ball(pygame.sprite.Sprite):
     def __init__(self, x=100, y=100):
         super().__init__()

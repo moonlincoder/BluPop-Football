@@ -7,6 +7,7 @@ from game import Game
     Например отрисовка спрайтов
 '''
 
+# todo: Добавить границы игрового поля
 
 class Controls:
     def __init__(self, up, down, left, right, extra):
@@ -65,8 +66,9 @@ class Player(pygame.sprite.Sprite):
             self.rect.y -= 100
 
         if pygame.key.get_pressed()[self.controls.down]:
-            pass    # связать игрока с мячом
-                    # копать в сторону object collision
+            pass
+            # todo: связать игрока с мячом
+            # todo: копать в сторону object collision
 
         if pygame.key.get_pressed()[self.controls.left]:
             self.rect.x -= 5
