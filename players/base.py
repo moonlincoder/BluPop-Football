@@ -1,5 +1,5 @@
 import pygame
-
+import gif_pygame
 from game import Game
 
 '''
@@ -25,23 +25,22 @@ CONTROL_4 = Controls(pygame.K_8, pygame.K_5, pygame.K_4, pygame.K_6, pygame.K_0)
 
 
 class Player(pygame.sprite.Sprite):
-    sprite = ''
+    sprite = './assets/images/bean/idle.png'
+    run = ''
+    jump = './assets/images/bean/jump.gif'
+    kick = ''
 
     def __init__(self, x_pos, y_pos, controls):
-
-        self.x_pos = x_pos
-        self.y_pos = y_pos
-
         self.score = 0
 
-        self.move_value = 0
-        self.rotate_value = 0
+        # self.move_value = 0
+        # self.rotate_value = 0
 
         self.controls = controls
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = pygame.Surface((50, 50))
-        self.image.fill((0, 200, 0))
+        self.image = pygame.image.load(self.sprite)
+        self.image = pygame.transform.scale(self.image, (80, 160))
 
         self.rect = self.image.get_rect()
         self.rect.center = [x_pos, y_pos]

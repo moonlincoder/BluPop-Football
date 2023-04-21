@@ -61,4 +61,4 @@ class GameWindow(Window):
         self.ball.draw(surface)
 
         for player in self.players:
-            surface.blit(player.image, player.rect)
+            surface.blit(player.image.blit_ready(), player.rect)
