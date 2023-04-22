@@ -53,8 +53,10 @@ class Player(pygame.sprite.Sprite):
         # 4: attack2
 
     def update(self):
-        if self.rect.left > 1000:
-            self.rect.x = 0
+        if self.rect.right > Game.game.screen.get_width():
+            self.rect.left = 0
+        # if self.rect.left < 0:
+        #     self.rect.right = Game.game.screen.get_width()
 
         if self.rect.bottom < Game.game.screen.get_height() - 100:
             self.rect.y += 20
@@ -73,6 +75,6 @@ class Player(pygame.sprite.Sprite):
             # todo: копать в сторону object collision
 
         if pygame.key.get_pressed()[self.controls.left]:
-            self.rect.x -= 5
+            self.rect.x -= 20
         if pygame.key.get_pressed()[self.controls.right]:
-            self.rect.x += 5
+            self.rect.x += 20

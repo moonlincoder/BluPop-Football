@@ -1,3 +1,5 @@
+import math
+
 import pygame
 
 import game
@@ -26,6 +28,7 @@ class Ball(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
         self.mouse_click_start = None
+
     def update(self):
         self.rect.y += 10 * self.vector[0]
         self.vector[0] += 1
@@ -56,6 +59,14 @@ class Ball(pygame.sprite.Sprite):
             self.rect.top = 0
             self.vector[0] = -self.vector[0]
 
+    def collide_with_player(self, player: Player):
+
+        if player.rect.colliderect(self.rect):
+            if abs(player.rect.x - self.rect.x) < player.rect.w / 2 + self.rect.w / 2:
+                self.vector[1] = -self.vector[1]
+
+            if abs(player.rect.y - self.rect.y) < player.rect.h / 2 + self.rect.h / 2:
+                self.vector[0] = -self.vector[0]
     def draw(self, surface):
         surface.blit(self.image, self.rect)
 
@@ -75,6 +86,7 @@ class GameWindow(Window):
         self.ball.update()
         for player in self.players:
             player.update()
+            self.ball.collide_with_player(player)
 
     def draw(self, surface):
         surface.fill((255, 255, 255))

@@ -18,7 +18,10 @@ class Game:
 
         # добавление возможности изменить размер окна
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
-        # pygame.display.set_icon(S)
+
+        gameIcon = pygame.image.load("./assets/images/ball.png")
+        pygame.display.set_icon(gameIcon)
+
         pygame.display.set_caption(GAME_TITLE)
         self.clock = pygame.time.Clock()
         self.current_view: Window = Window()
