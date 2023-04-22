@@ -5,18 +5,23 @@ import pygame
 # todo: Добавить размеры кнопки
 
 class Button(Component):
-    def __init__(self, position=(0, 0), btn_size=(0, 0), text: str = "Button", action=None, font="Arial", font_size=14):
+    def __init__(self, position=(0, 0), size=(0, 0), text: str = "Button", action=None, font="Arial", font_size=14):
         super().__init__()
         self.position = position
 
-        self.btn_size = btn_size
+        self.size = list(size)
 
         self.font = pygame.font.SysFont(font, font_size)
         self.text = text
         self.action = action
 
-        # if (len(text) * font_size / 1.5 > size[0]):
-        #     print(f"warn: button text may not fit. (make x-size > {len(text) * font_size // 2 + size[0] // 2})")
+        if (self.font.size(text)[0] > size[0]):
+            print('font size X less than text size, set more')
+            self.size[0] = self.font.size(text)[0]
+
+        if (self.font.size(text)[1] > size[1]):
+            print('font size Y less than text size, set more')
+            self.size[1] = self.font.size(text)[1]
 
         self.fillColors = {
             'normal': '#ffffff',
@@ -24,12 +29,11 @@ class Button(Component):
             'pressed': '#333333',
         }
 
-        # todo:
+        # todo: (469, 59)
 
-        self.buttonRect = pygame.Rect(self.position[0], self.position[1], *self.font.size(text))
-        self.buttonRect.width, self.buttonRect.height = self.btn_size
+        self.buttonRect = pygame.Rect(self.position[0], self.position[1], *self.size)
 
-        self.buttonSurface = pygame.Surface(self.font.size(text))
+        self.buttonSurface = pygame.Surface(self.size)
         self.buttonSurf = self.font.render(text, True, (20, 20, 20))
         self.mouse_down = False
 

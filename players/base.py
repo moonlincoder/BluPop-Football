@@ -61,10 +61,12 @@ class Player(pygame.sprite.Sprite):
         else:
             self.rect.bottom = Game.game.screen.get_height() - 100
 
+
     def monitor_keys(self, events):
         if pygame.key.get_pressed()[self.controls.up]:
             self.rect.y -= 100
 
+            #todo: double jump
         if pygame.key.get_pressed()[self.controls.down]:
             pass
             # todo: связать игрока с мячом

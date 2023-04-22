@@ -24,6 +24,7 @@ class Component:
         for element in self.children:
             element.update()
             element.update_sys()
+
     def draw_sys(self, surface):  # системная отрисовка добавленного интерфейса
         for element in self.children:
             element.draw(surface)

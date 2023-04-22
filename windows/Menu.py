@@ -11,14 +11,17 @@ from game import Game
     Кнопку "о нас" не забыть
 '''
 
+
 def call():
     from windows import PreGame
     Game.game.set_current_view(PreGame.PreGameWindow())
+
 
 def call_settings():
     from windows import Settings
     Game.game.set_current_view(Settings.SettingsWindow())
     pass
+
 
 def call_sound():
     from windows import Sound
@@ -30,26 +33,19 @@ class MenuWindow(Window):
     def __init__(self):
         super().__init__()
 
-        # todo: сделать что-то с размерами кнопки (не виден текст)
-
-        self.add_child(label.Label((50, 50), (200, 40), "Футбик головой", font_size=42))
-        self.add_child(label.Label((50, 170), (200, 40), "в новой кнопке нажатие срабатывает при отпускании", font_size=25, color=(150,250,100)))
-        self.add_child(button2.Button((430, 100), (350, 40), "Получить 3 точки", font_size=50, action=call))
+        self.add_child(label.Label((50, 50), "Футбик головой", font_size=42))
+        self.add_child(label.Label((50, 170), "в новой кнопке нажатие срабатывает при отпускании", font_size=25,
+                                   color=(150, 250, 100)))
+        self.add_child(button2.Button((430, 100), (500, 40), "Получить 3 точки", font_size=50, action=call))
 
         self.add_child(button2.Button((430, 400), (350, 40), "Игра", font_size=50, action=call))
-
-
-        #self.btn_game = button.Button(0, 200, 50, "Игра", call)
-        #self.btn_settings = button.Button(70, 200, 50, "Настройки", call_settings)
-        #self.btn_sound = button.Button(140, 200, 50, "Звук", call_sound)
-
+        self.add_child(button2.Button((430, 500), (350, 40), "Настройки", font_size=50, action=call_settings))
+        self.add_child(button2.Button((430, 600), (350, 40), "Звук", font_size=50, action=call_sound))
 
     def event_loop(self, event):
         pass
 
     def update(self): ...  # Обновление рассчетов
-
-
 
     def draw(self, surface):
         surface.fill((255, 0, 0))
