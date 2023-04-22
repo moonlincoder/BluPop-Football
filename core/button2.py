@@ -5,9 +5,12 @@ import pygame
 # todo: Добавить размеры кнопки
 
 class Button(Component):
-    def __init__(self, position=(0, 0), text: str = "Button", action=None, font="Arial", font_size=14):
+    def __init__(self, position=(0, 0), btn_size=(0, 0), text: str = "Button", action=None, font="Arial", font_size=14):
         super().__init__()
         self.position = position
+
+        self.btn_size = btn_size
+
         self.font = pygame.font.SysFont(font, font_size)
         self.text = text
         self.action = action
@@ -24,6 +27,8 @@ class Button(Component):
         # todo:
 
         self.buttonRect = pygame.Rect(self.position[0], self.position[1], *self.font.size(text))
+        self.buttonRect.width, self.buttonRect.height = self.btn_size
+
         self.buttonSurface = pygame.Surface(self.font.size(text))
         self.buttonSurf = self.font.render(text, True, (20, 20, 20))
         self.mouse_down = False
