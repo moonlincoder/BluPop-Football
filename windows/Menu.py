@@ -4,6 +4,7 @@ from core import button, label, button2
 from .base import Window
 from game import Game
 
+
 '''
     окно меню
     тут просто красивенький интерфейс и кнопка игра
@@ -11,6 +12,7 @@ from game import Game
     Кнопку "о нас" не забыть
 '''
 
+window_was_resized = pygame.display.get_surface().get_rect()
 
 def call():
     from windows import PreGame
@@ -45,12 +47,19 @@ class MenuWindow(Window):
     def event_loop(self, event):
         pass
 
-    def update(self): ...  # Обновление рассчетов
+    def update(self):
+        # todo: Отслеживание изменения размеров окна, чтобы можно было увеличить кнопки
+        if pygame.display.get_surface().get_rect() > window_was_resized:
+            resized_x = pygame.display.get_surface().get_rect().w - window_was_resized.w
+            resized_y = pygame.display.get_surface().get_rect().h - window_was_resized.h
+
+            self.percent_x = (100 * pygame.display.get_surface().get_rect().w / window_was_resized.w) - 100
+            self.percent_y = (100 * pygame.display.get_surface().get_rect().h / window_was_resized.h) - 100
+
+            print(f"Window was resized ({resized_x}: {self.percent_x}%, {resized_y}: {self.percent_y}%)")
+
 
     def draw(self, surface):
         surface.fill((255, 0, 0))
-        """
-        self.btn_game.process(surface)
-        self.btn_settings.process(surface)
-        self.btn_sound.process(surface)
-"""
+
+        #button2.size *= self.percent_x

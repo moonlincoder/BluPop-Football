@@ -52,10 +52,12 @@ class Player(pygame.sprite.Sprite):
         self.kicking = False
 
     def update(self):
-        if self.rect.right > Game.game.screen.get_width():
-            self.rect.left = 0
-        if self.rect.left < 0:
+        if self.rect.right >= Game.game.screen.get_width():
             self.rect.right = Game.game.screen.get_width()
+        if self.rect.left <= 0:
+            self.rect.left = 0
+        if self.rect.top <= 0:
+            self.rect.top = 0
 
         if self.rect.bottom < Game.game.screen.get_height() - 100:
             self.rect.y += 20  # todo: перейти на перемещение от скорости вместо перетаскивания игрока
