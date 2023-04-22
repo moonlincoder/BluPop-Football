@@ -1,4 +1,4 @@
-from .base import Player
+from .player import Player
 
 '''
     Персонаж Bean

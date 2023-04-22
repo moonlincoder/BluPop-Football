@@ -3,7 +3,7 @@ import math
 import pygame
 
 import game
-from players.base import Player
+from players.player import Player
 from game import Game
 from .base import Window
 
@@ -34,10 +34,10 @@ class Ball(pygame.sprite.Sprite):
         self.vector[0] += 1
         self.rect.x += 10 * self.vector[1]
 
-        if self.rect.bottom >= Game.game.screen.get_height():
+        if self.rect.bottom >= Game.game.screen.get_height() - 100:
             self.vector[0] -= 2
             self.vector[0] = -self.vector[0]
-            self.rect.bottom = Game.game.screen.get_height()
+            self.rect.bottom = Game.game.screen.get_height() - 100
 
         #todo
         # if self.mouse_click_start is not None:
@@ -60,13 +60,23 @@ class Ball(pygame.sprite.Sprite):
             self.vector[0] = -self.vector[0]
 
     def collide_with_player(self, player: Player):
-
         if player.rect.colliderect(self.rect):
-            if abs(player.rect.x - self.rect.x) < player.rect.w / 2 + self.rect.w / 2:
+            dx = abs(player.rect.center[0] - self.rect.center[0]) - player.rect.w / 2 - self.rect.w / 2
+            dy = abs(player.rect.center[1] - self.rect.center[1]) - player.rect.h / 2 - self.rect.h / 2
+            if dx > dy:  # если коллизия пришлась на ось Х игрока
                 self.vector[1] = -self.vector[1]
+                if player.rect.x > self.rect.x:
+                    self.rect.x += dx
+                else:
+                    self.rect.x -= dx
 
-            if abs(player.rect.y - self.rect.y) < player.rect.h / 2 + self.rect.h / 2:
+            else:
                 self.vector[0] = -self.vector[0]
+                if player.rect.y > self.rect.y:
+                    self.rect.y += dy
+                else:
+                    self.rect.y -= dy
+
     def draw(self, surface):
         surface.blit(self.image, self.rect)
 
@@ -75,8 +85,13 @@ class GameWindow(Window):
     def __init__(self, players: list[Player]):
         super().__init__()
         self.players = players
-        self.ball = Ball()
+        self.ball = Ball(500, 500)
         print("new game")
+
+        # debug
+        # self.ball.image = pygame.Surface((100, 100))
+        # for player in players:
+        #     player.image = pygame.Surface((80, 160))
 
     def event_loop(self, events):
         for player in self.players:

@@ -4,7 +4,7 @@ from windows.base import Window
 from windows import Temp, Football
 from game import Game
 
-from players.base import CONTROL_1, CONTROL_2, CONTROL_3, CONTROL_4
+from players.player import CONTROL_1, CONTROL_2, CONTROL_3, CONTROL_4
 from players import Bean
 
 
