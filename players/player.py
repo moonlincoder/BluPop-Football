@@ -34,8 +34,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, x_pos, y_pos, controls):
         self.score = 0
 
-        # self.move_value = 0
-        # self.rotate_value = 0
+        self.speed = [0, 0]
 
         self.controls = controls
         pygame.sprite.Sprite.__init__(self)
@@ -46,29 +45,39 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = [x_pos, y_pos]
 
-        self.action = 0
-        # 0: idle
-        # 1: run
-        # 2: jump
-        # 3: attack1
-        # 4: attack2
+        self.jumping = False
+        self.jump_pressed = False
+        self.double_jumping = False
+        self.running = False
+        self.kicking = False
 
     def update(self):
         if self.rect.right > Game.game.screen.get_width():
             self.rect.left = 0
-        # if self.rect.left < 0:
-        #     self.rect.right = Game.game.screen.get_width()
+        if self.rect.left < 0:
+            self.rect.right = Game.game.screen.get_width()
 
         if self.rect.bottom < Game.game.screen.get_height() - 100:
-            self.rect.y += 20
+            self.rect.y += 20  # todo: перейти на перемещение от скорости вместо перетаскивания игрока
         else:
             self.rect.bottom = Game.game.screen.get_height() - 100
+            self.jumping = False
+            self.double_jumping = False
 
     def monitor_keys(self, events):
         if pygame.key.get_pressed()[self.controls.up]:
-            self.rect.y -= 100
+            if self.jumping:
+                if not self.double_jumping and not self.jump_pressed:
+                    self.double_jumping = True
+                    self.rect.y -= 150
+            else:
+                self.jumping = True
+                self.rect.y -= 250
+            self.jump_pressed = True
+        else:
+            self.jump_pressed = False
 
-            # todo: double jump
+
         if pygame.key.get_pressed()[self.controls.down]:
             pass
             # todo: связать игрока с мячом
