@@ -8,7 +8,6 @@ class Button(Component):
     def __init__(self, position=(0, 0), size=(0, 0), text: str = "Button", action=None, font="Arial", font_size=14):
         super().__init__()
         self.position = position
-
         self.size = list(size)
 
         self.font = pygame.font.SysFont(font, font_size)
@@ -29,11 +28,16 @@ class Button(Component):
             'pressed': '#333333',
         }
 
-        # todo: (469, 59)
-
+        # Сделал кнопки по центру экэрана, но только ИЗНАЧАЛЬНОГО
+        self.screen_rect = pygame.display.get_surface().get_rect()
         self.buttonRect = pygame.Rect(self.position[0], self.position[1], *self.size)
+        self.buttonRect.center = self.screen_rect.center
+        self.buttonRect.y = self.position[1]
+
+
 
         self.buttonSurface = pygame.Surface(self.size)
+
         self.buttonSurf = self.font.render(text, True, (20, 20, 20))
         self.mouse_down = False
 
