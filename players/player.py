@@ -1,3 +1,5 @@
+from math import sqrt
+
 import pygame
 from game import Game
 
@@ -26,7 +28,7 @@ CONTROL_4 = Controls(pygame.K_8, pygame.K_5, pygame.K_4, pygame.K_6, pygame.K_0)
 
 
 class Player(pygame.sprite.Sprite):
-    sprite = './assets/images/bean/idle.png'
+    sprite = ''
     run = ''
     jump = './assets/images/bean/jump.gif'
     kick = ''
@@ -66,7 +68,7 @@ class Player(pygame.sprite.Sprite):
             self.jumping = False
             self.double_jumping = False
 
-    def monitor_keys(self, events):
+    def monitor_keys(self, events, game):
         if pygame.key.get_pressed()[self.controls.up]:
             if self.jumping:
                 if not self.double_jumping and not self.jump_pressed:
@@ -81,9 +83,20 @@ class Player(pygame.sprite.Sprite):
 
 
         if pygame.key.get_pressed()[self.controls.down]:
-            pass
-            # todo: связать игрока с мячом
-            # todo: копать в сторону object collision
+            x1 = game.ball.rect.x
+            y1 = game.ball.rect.y
+            x2 = self.rect.x
+            y2 = self.rect.y
+
+            if sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2) < 160:
+                if self.rect.x < game.ball.rect.x:
+                    game.ball.vector[1] = 3
+                else:
+                    game.ball.vector[1] = -3
+
+                game.ball.vector[1] *= 1.15
+
+                game.ball.vector[0] = -5
 
         if pygame.key.get_pressed()[self.controls.left]:
             self.rect.x -= 20

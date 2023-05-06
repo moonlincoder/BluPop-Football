@@ -7,6 +7,6 @@ from .player import Player
 '''
 
 
-class Bean(Player):
-    sprite = "./assets/images/bean/idle.png"
+class Redob(Player):
+    sprite = './assets/images/Redob/idle.png'
 

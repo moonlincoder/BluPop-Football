@@ -5,7 +5,7 @@ from windows import Temp, Football
 from game import Game
 
 from players.player import CONTROL_1, CONTROL_2, CONTROL_3, CONTROL_4
-from players import Bean
+from players import Bean, Redob
 
 
 class PreGameWindow(Window):
@@ -22,12 +22,12 @@ class PreGameWindow(Window):
                     selected.append(Bean(100, 100, CONTROL_2))
                 if event.key == pygame.K_2:
                     selected.append(Bean(400, 100, CONTROL_1))
-                    selected.append(Bean(100, 100, CONTROL_2))
+                    selected.append(Redob(100, 100, CONTROL_2))
                 if event.key == pygame.K_4:
                     selected.append(Bean(100, 100, CONTROL_1))
                     selected.append(Bean(300, 100, CONTROL_2))
-                    selected.append(Bean(500, 100, CONTROL_3))
-                    selected.append(Bean(700, 100, CONTROL_4))
+                    selected.append(Redob(500, 100, CONTROL_3))
+                    selected.append(Redob(700, 100, CONTROL_4))
 
                 Game.game.set_current_view(Football.GameWindow(selected))
 
